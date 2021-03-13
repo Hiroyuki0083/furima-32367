@@ -24,6 +24,7 @@
 | user                | references | null: false,foreign_key: true | <!-- references型で記述の場合、_idは不要 -->
 | name                | string     | null: false |
 | item_status_id      | integer    | null: false | <!--imageはactive_storage導入時に自動生成 -->
+| item_infomation     | integer    | null: false | 
 | price               | integer    | null: false |
 | shipping_charge_id  | integer    | null: false | <!--複数形で記述するとエラーの恐れあり-->
 | shipping_area_id    | text       | null: false |
@@ -31,7 +32,7 @@
 | category_id         | text       | null: false |
 
 ### Association
-- has_one :buy_managements <!-- １つの商品は１つの購入情報を持つ関係が成り立つ。Belongだと属すになる。1対1の関係の場合はhas_one -->
+- has_one :buy_management <!-- １つの商品は１つの購入情報を持つ関係が成り立つ。Belongだと属すになる。1対1の関係の場合はhas_one -->
 - belongs_to :user
 <!-- - has_many :item_status_id -->
 <!-- - belongs_to :shipping_charge_id -->
@@ -51,8 +52,8 @@
 
 ### Association
 - has_one :address <!-- 購入履歴に対する購入者の住所は１つ -->
-- belongs_to :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
 
 ## addresses テーブル
 
