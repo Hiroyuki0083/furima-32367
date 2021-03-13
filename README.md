@@ -14,7 +14,7 @@
 | email              | string | null: false |
 
 ### Association
-- has_many :item
+- has_many :items
 - has_many :buy_managements
 
 ## itemsテーブル
@@ -31,7 +31,8 @@
 | category_id         | integer    | null: false |
 
 ### Association
-- belongs_to :buy_managements <!-- １つの商品は１つの購入情報を持つ関係が成り立つ -->
+- has_many :buy_managements <!-- １つの商品は１つの購入情報を持つ関係が成り立つ。Belongだと属すになる -->
+- belongs_to :users
 <!-- - has_many :item_status_id -->
 <!-- - belongs_to :shipping_charge_id -->
 <!-- - belongs_to :shipping_area_id -->
@@ -49,8 +50,9 @@
 <!-- | user_address| string     | null: false | -->
 
 ### Association
-- belongs_to :address
-- belongs_to :item
+- has_many :address
+- belongs_to :items
+- belongs_to :users
 
 ## addresses テーブル
 
