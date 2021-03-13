@@ -13,6 +13,15 @@
 | birthday           | date   | null: false | <!-- 年月日を区切るにはDATE型 -->
 | email              | string | null: false |
 
+### Association
+- belongs_to :nickname
+- belongs_to :lastname
+- belongs_to :name
+- belongs_to :name_furigana
+- belongs_to :encrypted_password
+- belongs_to :birthday
+- belongs_to :email
+
 ## itemsテーブル
 
 | Column              | Type       | Options     |
@@ -26,6 +35,16 @@
 | shipping_day_id     | integer    | null: false |
 | category_id         | integer    | null: false |
 
+### Association
+- belongs_to :user
+- belongs_to :name
+- has_many :item_status_id
+- belongs_to :shipping_charge_id
+- belongs_to :shipping_area_id
+- has_many :shipping_day_id
+- belongs_to :category_id
+
+
 ## buy_managements テーブル
 
 | Column  | Type       | Options           |
@@ -35,22 +54,35 @@
 <!-- | user_name   | string     | null: false | -->
 <!-- | user_address| string     | null: false | -->
 
+### Association
+- belongs_to :user
+- belongs_to :item
+
 ## addresses テーブル
 
-| Column          | Type       | Options     |
-| --------------- | ---------- | ----------- |
+| Column          | Type       | Options           |
+| --------------- | ---------- | ------------------|
 <!-- | buyer_id        | references | null: false | -->
 <!-- | user_id         | references | null: false | -->
 <!-- | item_name       | string     | null: false | -->
 <!-- | user_address    | string     | null: false | -->
 <!-- | shipping_address| string     | null: false | -->
-| post_number     | string     | null: false |
-| prefectures     | string     | null: false |
-| municipality    | string     | null: false |
-| address         | string     | null: false |
-| building_name   | string     |             |<!-- 建物名は任意項目 -->
-| telephone_number| string     | null: false |<!-- 先頭が０で始まるものはintegerにすると、先頭の０が消える場合がある -->
-| buy_management  | string     | null: false |
+| post_number     | string     | null: false       |
+| shipping_area_id| integer    | null: false       |
+| municipality    | string     | null: false       |
+| address         | string     | null: false       |
+| building_name   | string     |                   |<!-- 建物名は任意項目 -->
+| telephone_number| string     | null: false       |<!-- 先頭が０で始まるものはintegerにすると、先頭の０が消える場合がある -->
+| buy_management  | references | foreign_key: true |
+
+### Association
+- belongs_to :post_number
+- belongs_to :shipping_area_id
+- belongs_to :municipality
+- belongs_to :address
+- belongs_to :building_name
+- belongs_to :telephone_number
+- belongs_to :buy_management
 
 
 This README would normally document whatever steps are necessary to get the
