@@ -11,25 +11,33 @@
 | telephone | string | null: false |
 | address   | text   | null: false |
 
-## items_saler テーブル
+## itemsテーブル
 
 | Column     | Type       | Options     |
 | ---------- | ---------- | ----------- |
-| buyer      | references | null: false |
-| user       | references |             |
+| buyer_id   | references | null: false |
+| user_id    | references | null: false |
 | item_name  | string     | null: false |
 | image      | text       |             |
 | item_status| string     | null: false |
 | price      | string     | null: false |
 
-## item_buyer テーブル
+## buy_management テーブル
 
 | Column      | Type       | Options     |
 | ----------- | ---------- | ----------- |
-| card        | references |             |
-| user        | references |             |
-| card        | references |             |
+| item_id     | references | null: false |
+| user_id     | references | null: false |
 | user_name   | string     | null: false |
+| user_address| string     | null: false |
+
+## address テーブル
+
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| buyer_id    | references | null: false |
+| user_id     | references | null: false |
+| item_name   | string     | null: false |
 | user_address| string     | null: false |
 
 This README would normally document whatever steps are necessary to get the
