@@ -11,6 +11,7 @@
 | name_furigana      | string | null: false | <!-- プロフやTELは新規登録に存在しない項目 -->
 | encrypted_password | string | null: false | <!-- deviceのgemを使用する -->
 | birthday           | date   | null: false | <!-- 年月日を区切るにはDATE型 -->
+| email              | string | null: false |
 
 ## itemsテーブル
 
@@ -25,7 +26,7 @@
 | shipping_day_id     | integer    | null: false |
 | category_id         | integer    | null: false |
 
-## buy_management テーブル
+## buy_managements テーブル
 
 | Column  | Type       | Options           |
 | --------| ---------- | ----------------- |
@@ -34,7 +35,7 @@
 <!-- | user_name   | string     | null: false | -->
 <!-- | user_address| string     | null: false | -->
 
-## address テーブル
+## addresses テーブル
 
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
@@ -43,6 +44,13 @@
 | item_name       | string     | null: false |
 | user_address    | string     | null: false |
 | shipping_address| string     | null: false |
+| post_number     | integer    | null: false |
+| prefectures     | string     | null: false |
+| municipality    | string     | null: false |
+| address         | integer    | null: false |
+| building_name   | string     | null: false |
+| telephone_number| integer    | null: false |
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
