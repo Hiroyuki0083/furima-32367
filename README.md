@@ -14,13 +14,8 @@
 | email              | string | null: false |
 
 ### Association
-- belongs_to :nickname
-- belongs_to :lastname
-- belongs_to :name
-- belongs_to :name_furigana
-- belongs_to :encrypted_password
-- belongs_to :birthday
-- belongs_to :email
+- belongs_to :item
+- belongs_to :buy_managements
 
 ## itemsテーブル
 
@@ -36,13 +31,12 @@
 | category_id         | integer    | null: false |
 
 ### Association
-- belongs_to :user
-- belongs_to :name
-- has_many :item_status_id
-- belongs_to :shipping_charge_id
-- belongs_to :shipping_area_id
-- has_many :shipping_day_id
-- belongs_to :category_id
+- belongs_to :buy_managements <!-- １つの商品は１つの購入情報を持つ関係が成り立つ -->
+<!-- - has_many :item_status_id -->
+<!-- - belongs_to :shipping_charge_id -->
+<!-- - belongs_to :shipping_area_id -->
+<!-- - has_many :shipping_day_id -->
+<!-- - belongs_to :category_id -->
 
 
 ## buy_managements テーブル
@@ -55,7 +49,7 @@
 <!-- | user_address| string     | null: false | -->
 
 ### Association
-- belongs_to :user
+- belongs_to :address
 - belongs_to :item
 
 ## addresses テーブル
@@ -76,12 +70,7 @@
 | buy_management  | references | foreign_key: true |
 
 ### Association
-- belongs_to :post_number
-- belongs_to :shipping_area_id
-- belongs_to :municipality
-- belongs_to :address
-- belongs_to :building_name
-- belongs_to :telephone_number
+- belongs_to :shipping_area <!-- アソシエーションを組む場合は_idは不要 -->
 - belongs_to :buy_management
 
 
