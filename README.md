@@ -23,23 +23,17 @@
 | ------------------- | ---------- | ----------- |
 | user                | references | null: false,foreign_key: true | <!-- references型で記述の場合、_idは不要 -->
 | name                | string     | null: false |
-| item_status_id      | integer    | null: false | <!--imageはactive_storage導入時に自動生成 -->
-| item_infomation     | integer    | null: false | 
+| status_id           | integer    | null: false | <!--imageはactive_storage導入時に自動生成 -->
+| information         | text       | null: false | <!-- 長文保存の可能性があればTEXT -->
 | price               | integer    | null: false |
 | shipping_charge_id  | integer    | null: false | <!--複数形で記述するとエラーの恐れあり-->
-| shipping_area_id    | text       | null: false |
-| shipping_day_id     | text       | null: false |
-| category_id         | text       | null: false |
+| shipping_area_id    | integer    | null: false |
+| shipping_day_id     | integer    | null: false |
+| category_id         | integer    | null: false |
 
 ### Association
 - has_one :buy_management <!-- １つの商品は１つの購入情報を持つ関係が成り立つ。Belongだと属すになる。1対1の関係の場合はhas_one -->
 - belongs_to :user
-<!-- - has_many :item_status_id -->
-<!-- - belongs_to :shipping_charge_id -->
-<!-- - belongs_to :shipping_area_id -->
-<!-- - has_many :shipping_day_id -->
-<!-- - belongs_to :category_id -->
-
 
 ## buy_managements テーブル
 
@@ -59,11 +53,6 @@
 
 | Column          | Type       | Options           |
 | --------------- | ---------- | ------------------|
-<!-- | buyer_id        | references | null: false | -->
-<!-- | user_id         | references | null: false | -->
-<!-- | item_name       | string     | null: false | -->
-<!-- | user_address    | string     | null: false | -->
-<!-- | shipping_address| string     | null: false | -->
 | post_number     | string     | null: false       |
 | shipping_area_id| integer    | null: false       |
 | municipality    | string     | null: false       |
