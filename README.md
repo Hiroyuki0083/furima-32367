@@ -62,7 +62,3 @@
 ### Association
 - belongs_to :shipping_area <!-- アソシエーションを組む場合は_idは不要 -->
 - belongs_to :buy_management
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
