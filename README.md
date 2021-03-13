@@ -11,7 +11,7 @@
 | name_furigana      | string | null: false | <!-- プロフやTELは新規登録に存在しない項目 -->
 | encrypted_password | string | null: false | <!-- deviceのgemを使用する -->
 | birthday           | date   | null: false | <!-- 年月日を区切るにはDATE型 -->
-| email              | string | null: false |
+| email              | string | null: false,unique: true |<!-- emailは一意性なのでunique: true -->
 
 ### Association
 - has_many :items
@@ -21,18 +21,18 @@
 
 | Column              | Type       | Options     |
 | ------------------- | ---------- | ----------- |
-| user                | references | null: false | <!-- references型で記述の場合、_idは不要 -->
+| user                | references | null: false,foreign_key: true | <!-- references型で記述の場合、_idは不要 -->
 | name                | string     | null: false |
 | item_status_id      | integer    | null: false | <!--imageはactive_storage導入時に自動生成 -->
 | price               | integer    | null: false |
 | shipping_charge_id  | integer    | null: false | <!--複数形で記述するとエラーの恐れあり-->
-| shipping_area_id    | integer    | null: false |
-| shipping_day_id     | integer    | null: false |
-| category_id         | integer    | null: false |
+| shipping_area_id    | text       | null: false |
+| shipping_day_id     | text       | null: false |
+| category_id         | text       | null: false |
 
 ### Association
-- has_many :buy_managements <!-- １つの商品は１つの購入情報を持つ関係が成り立つ。Belongだと属すになる -->
-- belongs_to :users
+- has_one :buy_managements <!-- １つの商品は１つの購入情報を持つ関係が成り立つ。Belongだと属すになる。1対1の関係の場合はhas_one -->
+- belongs_to :user
 <!-- - has_many :item_status_id -->
 <!-- - belongs_to :shipping_charge_id -->
 <!-- - belongs_to :shipping_area_id -->
@@ -50,7 +50,7 @@
 <!-- | user_address| string     | null: false | -->
 
 ### Association
-- has_many :address
+- has_one :address <!-- 購入履歴に対する購入者の住所は１つ -->
 - belongs_to :items
 - belongs_to :users
 
