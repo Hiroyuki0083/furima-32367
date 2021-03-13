@@ -14,8 +14,8 @@
 | email              | string | null: false |
 
 ### Association
-- belongs_to :item
-- belongs_to :buy_managements
+- has_many :item
+- has_many :buy_managements
 
 ## itemsテーブル
 
