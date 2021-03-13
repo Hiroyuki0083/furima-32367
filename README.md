@@ -39,17 +39,18 @@
 
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
-| buyer_id        | references | null: false |
-| user_id         | references | null: false |
-| item_name       | string     | null: false |
-| user_address    | string     | null: false |
-| shipping_address| string     | null: false |
-| post_number     | integer    | null: false |
+<!-- | buyer_id        | references | null: false | -->
+<!-- | user_id         | references | null: false | -->
+<!-- | item_name       | string     | null: false | -->
+<!-- | user_address    | string     | null: false | -->
+<!-- | shipping_address| string     | null: false | -->
+| post_number     | string     | null: false |
 | prefectures     | string     | null: false |
 | municipality    | string     | null: false |
-| address         | integer    | null: false |
-| building_name   | string     | null: false |
-| telephone_number| integer    | null: false |
+| address         | string     | null: false |
+| building_name   | string     |             |<!-- 建物名は任意項目 -->
+| telephone_number| string     | null: false |<!-- 先頭が０で始まるものはintegerにすると、先頭の０が消える場合がある -->
+| buy_management  | string     | null: false |
 
 
 This README would normally document whatever steps are necessary to get the
