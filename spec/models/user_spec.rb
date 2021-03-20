@@ -7,18 +7,19 @@ RSpec.describe User, type: :model do
   
   describe "ユーザー新規登録" do
      it "nicknameが空だと登録できない" do
-      user = FactoryBot.build(:user)  # Userのインスタンス生成
-      user.nickname = ''  # nicknameの値を空にする
-      user.valid?
+      @user.nickname = ''  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
+      @user.valid?
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
      end
      it "emailが空では登録できない" do
-      user = FactoryBot.build(:user)  # Userのインスタンス生成
-      user.email = ''  # emailの値を空にする
-      user.valid?
-      expect(user.errors.full_messages).to include("Email can't be blank")
+      @user.email = ''  # emailの値を空にする
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email can't be blank")
      end
      it 'emailに@が含まれれば登録できる' do
+      @user.email = 'testtest'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
      end
      it 'passwordが空では登録できない' do
       user = User.new(nickname: "ueno", email: "kkk@gmail.com", password: "", password_confirmation: "")
@@ -26,6 +27,15 @@ RSpec.describe User, type: :model do
       expect(user.errors.full_messages).to include("Password can't be blank")
      end
      it 'passwordは確認用を含めて2回入力する' do
+      @user.password = '111aaa'
+      @user.password_confirmation = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+     end
+     it 'passwordは、半角英数字混合での入力が必須であること' do
+      @user.password = '111aaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
      end
      it '重複したemailが存在する場合登録できない' do
       @user.save
