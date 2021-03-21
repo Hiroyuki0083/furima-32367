@@ -80,17 +80,17 @@ RSpec.describe User, type: :model do
      it 'ユーザーの名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
       @user.lastname = 'aaa111'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+      expect(@user.errors.full_messages).to include("Lastname is invalid. Input full-width characters.")
     end
      it 'ユーザーの名前の振り仮名が必須であること' do
        @user.name_furigana = ''
        @user.valid?
-       expect(@user.errors.full_messages).to include("Name furigana can't be blank", "Lastname furigana can't be blank")
+       expect(@user.errors.full_messages).to include("Name furigana can't be blank", "Name furigana is invalid. Input full-width katakana characters.")
      end
      it 'ユーザー名字の振り仮名が必須であること' do
       @user.lastname_furigana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Name furigana can't be blank", "Lastname furigana can't be blank")
+      expect(@user.errors.full_messages).to include("Lastname furigana can't be blank", "Lastname furigana is invalid. Input full-width katakana characters.")
     end
      it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
        @user.name = 'aaa111'
