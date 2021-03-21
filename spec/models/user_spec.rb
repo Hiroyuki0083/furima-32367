@@ -50,5 +50,33 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
+    it 'ユーザー本名は、名字と名前がそれぞれ必須であること' do
+      @user.name = ''
+      @user.lastname = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name can't be blank")
+    end
+    it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      @user.name = 'aaa111'
+      @user.lastname = 'aaa111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+    end
+    it 'ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること' do
+      @user.name_furigana = ''
+      @user.lastname_furigana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name furigana can't be blank", "Lastname furigana can't be blank")
+    end
+    it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
+      @user.name = 'aaa111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+    end
+    it '生年月日が必須であること' do
+      @user.birthday = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birthday can't be blank")
+    end
   end
 end
