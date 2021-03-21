@@ -53,6 +53,16 @@ RSpec.describe User, type: :model do
        @user.valid?
        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
      end
+     it 'passwordは、半角英語のみでは登録できない' do
+      @user.password = 'aaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+     end
+     it 'passwordは、全角では登録できない' do
+      @user.password = 'ＡＡＡＡＡＡ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+     end
      it '重複したemailが存在する場合登録できない' do
        @user.save
        another_user = FactoryBot.build(:user)
@@ -66,11 +76,15 @@ RSpec.describe User, type: :model do
        @user.valid?
        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
      end
-     it 'ユーザー本名は、名字と名前がそれぞれ必須であること' do
+     it 'ユーザー本名は、名前が必須であること' do
        @user.name = ''
-       @user.lastname = ''
        @user.valid?
        expect(@user.errors.full_messages).to include("Name can't be blank")
+     end
+     it 'ユーザー本名は、名字が必須であること' do
+      @user.lastname = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Lastname can't be blank", "Lastname is invalid. Input full-width characters.")
      end
      it 'ユーザーの名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
        @user.name = 'aaa111'
@@ -92,10 +106,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Lastname furigana can't be blank", "Lastname furigana is invalid. Input full-width katakana characters.")
     end
-     it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
+     it 'ユーザーの名前のフリガナは、全角（カタカナ）での入力が必須であること' do
        @user.name = 'aaa111'
        @user.valid?
        expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+     end
+     it 'ユーザーの名字のフリガナは、全角（カタカナ）での入力が必須であること' do
+      @user.lastname = 'aaa111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Lastname is invalid. Input full-width characters.")
      end
      it '生年月日が必須であること' do
        @user.birthday = ''

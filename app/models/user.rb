@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :name
+    validates :lastname
     validates :name_furigana
     validates :lastname_furigana
     validates :nickname
