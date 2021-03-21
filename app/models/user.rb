@@ -5,16 +5,27 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence: true do
-    validates :name, presence: true
-    validates :name_furigana, presence: true
-    validates :lastname_furigana, presence: true
-    validates :nickname, presence: true
-    validates :birthday, presence: true
-    validates :name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters." }
-    validates :lastname, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters." }
-    validates :name_furigana, format: { with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters." }
-    validates :lastname_furigana, format: { with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters." }
-    validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input full-width characters."}
-    validates :password_confirmation, format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input full-width characters."}
+    validates :name
+    validates :name_furigana
+    validates :lastname_furigana
+    validates :nickname
+    validates :birthday   
+  end
+
+  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters." } do
+    validates :name
+    validates :lastname
+  end
+
+  with_options format: { with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters." } do
+    validates :name_furigana, 
+    validates :lastname_furigana
+  end
+
+  with_options format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input full-width characters."} do
+    validates :password
+    validates :password_confirmation
   end
 end
+
+# 7行目以降presence: trueは不要。（7行目で定義済み）
