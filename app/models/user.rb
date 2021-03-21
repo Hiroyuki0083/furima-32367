@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   with_options format: { with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters." } do
-    validates :name_furigana, 
+    validates :name_furigana
     validates :lastname_furigana
   end
 
