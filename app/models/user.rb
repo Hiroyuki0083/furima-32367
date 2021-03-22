@@ -23,7 +23,7 @@ class User < ApplicationRecord
     validates :lastname_furigana
   end
 
-  with_options format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input full-width characters."} do
+  with_options format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "is invalid. Input full-width characters."} do
     validates :password
     validates :password_confirmation
   end
