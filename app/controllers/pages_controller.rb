@@ -9,4 +9,8 @@ class PagesController < ApplicationController
   # def move_to_index
   #   redirect_to action: :index unless user_signed_in?
   # end
+
+  def comment_params
+    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+  end
 end
