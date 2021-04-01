@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  # before_action :authenticate_user! この記述だと未ログイン時のトップページがログイン画面になる
-  # before_action :move_to_index, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
+  # before_action :move_to_index
 
   # def home
   #   @furimas = Furima.all
@@ -13,4 +13,5 @@ class PagesController < ApplicationController
   def comment_params
     params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   end
+
 end
