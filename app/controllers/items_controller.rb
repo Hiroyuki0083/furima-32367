@@ -18,9 +18,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @items = Item.new(items_params)
+    @item = Item.new(items_params)
     # モデル名を指定しているので複数形にはしない
-    if @items.save
+    if @item.save
       redirect_to root_path
     else
       render :new
@@ -30,6 +30,6 @@ class ItemsController < ApplicationController
   private
   
   def items_params
-    params.require(:item).permit(:item)
+    params.require(:item).permit(:name, :category_id, :status_id, :shipping_charge_id, :shipping_area_id, :shipping_day_id, :price, :commit)
   end
 end
