@@ -16,5 +16,6 @@ class Item < ApplicationRecord
   end
   
   validates :price, length: { in: 300..9999999 }
-  validates :price, numericality
+  validates :price
+  # , numericality この後に正規表現
 end

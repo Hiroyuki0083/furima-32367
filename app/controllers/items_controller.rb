@@ -1,17 +1,12 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  # before_action :move_to_index
 
-  # def home
-  #   @furimas = Furima.all
-  # end
-
-  def move_to_index
-    redirect_to action: :index unless user_signed_in?
+  def index
+    @items = Item.includes(:user)
   end
 
-  def comment_params
-    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+  def new
+    @item = Item.new
   end
 
   def update
@@ -23,7 +18,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @items = Items.new(items_params)
+    @items = Item.new(items_params)
+    # モデル名を指定しているので複数形にはしない
     if @items.save
       redirect_to root_path
     else
@@ -32,9 +28,8 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  # def user_params
-  #   params.require(:user).permit(:name, :email)
-  # end
-
+  
+  def items_params
+    params.require(:item).permit(:title, :item)
+  end
 end
