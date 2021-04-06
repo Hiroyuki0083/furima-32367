@@ -14,7 +14,6 @@ class Item < ApplicationRecord
     validates :price
   end
   
-  validates :price, length: { in: 300..9999999 }
-  validates :price
-  # , numericality この後に正規表現
+  # validates :price, length: { in: 300..9999999 }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range" }
 end
