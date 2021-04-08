@@ -9,13 +9,14 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def update
-    if current_user.update(user_params)
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if current_user.update(user_params)
+  #     redirect_to root_path
+  #   else
+  #     render :edit
+  #   end
+  # end
+  # 商品編集機能の記述
 
   def create
     @item = Item.new(items_params)
