@@ -7,11 +7,11 @@ class Item < ApplicationRecord
     validates :name
     validates :image
     validates :information
-    validates :category_id
-    validates :status_id
-    validates :shipping_charge_id
-    validates :shipping_area_id
-    validates :shipping_day_id
+    validates :category_id, numericality: { only_integer: true}
+    validates :status_id, numericality: { only_integer: true}
+    validates :shipping_charge_id, numericality: { only_integer: true}
+    validates :shipping_area_id, numericality: { only_integer: true}
+    validates :shipping_day_id, numericality: { only_integer: true}
     validates :price
   end
   
