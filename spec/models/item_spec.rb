@@ -12,7 +12,7 @@ RSpec.describe Item, type: :model do
     context '商品出品に成功するとき' do
         it '必要な情報を適切に入力すれば登録できる。' do
           @item.name = 'sample'
-          @item.category_id = 1
+          @item.category_id = 1 #数値を入れる場合は''などで括らない。
           @item.status_id = 1
           @item.shipping_charge_id = 1
           @item.shipping_area_id = 1
