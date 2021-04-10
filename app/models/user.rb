@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   # has_many :items
   # has_many :buy_managements
-  # 購入記録に関するテーブルのアソシエーション
+  # 購入記録に関するテーブルのアソシエーション(実装時にコメントアウト解除予定)
 
   with_options presence: true do
     validates :name
