@@ -7,11 +7,14 @@ class Item < ApplicationRecord
     validates :name
     validates :image
     validates :information
-    validates :category_id, numericality: { other_than: 1} #only_integerだと数値ならどれでもよい、になる
-    validates :status_id, numericality: { other_than: 1}
-    validates :shipping_charge_id, numericality: { other_than: 1}
-    validates :shipping_area_id, numericality: { other_than: 1}
-    validates :shipping_day_id, numericality: { other_than: 1}
+  end
+
+  with_options numericality: { other_than: 1} do
+    validates :category_id #only_integerだと数値ならどれでもよい、になる
+    validates :status_id
+    validates :shipping_charge_id
+    validates :shipping_area_id
+    validates :shipping_day_id
     validates :price
   end
   
