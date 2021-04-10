@@ -3,6 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  # has_many :items
+  # has_many :buy_managements
+  # 購入記録に関するテーブルのアソシエーション(実装時にコメントアウト解除予定)
 
   with_options presence: true do
     validates :name
@@ -26,6 +30,10 @@ class User < ApplicationRecord
   with_options format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "is invalid. Input full-width characters."} do
     validates :password
     validates :password_confirmation
+  end
+
+  with_options format: { with: /\A[0-9]+\z/, message: "is invalid. Input full-width characters."} do
+    validates :price
   end
 end
 
