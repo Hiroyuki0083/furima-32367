@@ -4,4 +4,8 @@ class ShippingCharge < ActiveHash::Base
     { id: 2, charge: '購入者' },
     { id: 3, charge: '出品者' },
   ]
-  end
+
+  include ActiveHash::Associations
+  has_many :items
+
+end
