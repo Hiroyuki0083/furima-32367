@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if current_user.id == @item.user_id
-     item.destroy
+     @item.destroy
     end
   end
 
