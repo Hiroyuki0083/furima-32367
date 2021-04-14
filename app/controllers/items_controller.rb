@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
+  before_action :authenticate_user!, except: [:index, :show, :edit] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -35,6 +35,10 @@ class ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
+  end
+
+  def edit
+    @item = Item.find(params[:id])
   end
 
   private
