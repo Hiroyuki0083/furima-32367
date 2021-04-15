@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :edit, :update] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
+  before_action :authenticate_user!, except: [:index, :show] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
+  # before_action :move_to_index, [:update]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -30,6 +31,9 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if @item.user_id != current_user.id
+      redirect_to root_path
+    end
   end
 
   def update
@@ -46,4 +50,10 @@ class ItemsController < ApplicationController
   def items_params
     params.require(:item).permit(:name, :category_id, :status_id, :shipping_charge_id, :shipping_area_id, :shipping_day_id, :price, :image, :information).merge(user_id: current_user.id)
   end
+
+  def move_to_index
+    user_signed_in?
+      redirect_to action: :index
+  end
+
 end
