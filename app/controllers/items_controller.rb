@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :edit] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
+  before_action :authenticate_user!, except: [:index, :show, :edit, :update] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -8,15 +8,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-
-  # def update
-  #   if current_user.update(user_params)
-  #     redirect_to root_path
-  #   else
-  #     render :edit
-  #   end
-  # end
-  # 商品編集機能の記述
 
   def create
     @item = Item.new(items_params)
@@ -39,6 +30,15 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(items_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
   end
 
   private
