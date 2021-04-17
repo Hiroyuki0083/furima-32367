@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action set_item, only: [:show, :destroy]
+  before_action :authenticate_user!, except: [:index, :show] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
+  before_action :move_to_index, only: [:destroy, :update, :edit]
+  before_action :set_item, only: [:show, :edit, :update, :move_to_index]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -9,15 +10,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-
-  # def update
-  #   if current_user.update(user_params)
-  #     redirect_to root_path
-  #   else
-  #     render :edit
-  #   end
-  # end
-  # 商品編集機能の記述
 
   def create
     @item = Item.new(items_params)
@@ -33,19 +25,35 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if current_user.id == @item.user_id
-     @item.destroy
-     redirect_to root_path
+    item = Item.find(params[:id])
+    item.destroy
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(items_params)
+      redirect_to item_path
+    else
+      render :edit
     end
   end
 
   private
-  
-  def items_params
-    params.require(:item).permit(:name, :category_id, :status_id, :shipping_charge_id, :shipping_area_id, :shipping_day_id, :price, :image, :information).merge(user_id: current_user.id)
-  end
 
   def set_item
     @item = Item.find(params[:id])
   end
-end
+
+  def items_params
+    params.require(:item).permit(:name, :category_id, :status_id, :shipping_charge_id, :shipping_area_id, :shipping_day_id, :price, :image, :information).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    if @item.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+  
+end 
