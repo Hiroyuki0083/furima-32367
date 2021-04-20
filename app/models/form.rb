@@ -1,4 +1,4 @@
-class form < ApplicationRecord
+class Form < ApplicationRecord
   include ActiveModel::Model
   attr_accessor :token, :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id
 
