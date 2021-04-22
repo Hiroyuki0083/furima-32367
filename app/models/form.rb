@@ -1,4 +1,4 @@
-class Form < ApplicationRecord
+class Form
   include ActiveModel::Model
   attr_accessor :token, :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id
 
@@ -10,13 +10,13 @@ class Form < ApplicationRecord
     validates :address
   end
 
-  with_options numericality: { /\A\d{3}[-]\d{4}\z/} do
+  with_options format: { with: /\A\d{3}[-]\d{4}\z/} do
     validates :post_number
   end
   
-  with_options numericality: { /^[0-9]+$/} do
+  # with_options numericality: { /^[0-9]+$/} do
     
-  end
+  # end
 
   with_options numericality: { other_than: 1} do
     validates :shipping_area_id
