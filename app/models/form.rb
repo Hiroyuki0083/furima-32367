@@ -1,6 +1,6 @@
 class Form
   include ActiveModel::Model
-  attr_accessor :token, :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id
+  attr_accessor :token, :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id, :building_name
 
   with_options presence: true do
     validates :token
@@ -30,7 +30,7 @@ class Form
 
   def save
     # 各テーブルにデータを保存する処理を書く
-    buy_management = BuyManagement.create(item_id: item_id, user: user)
-    Address.create(post_number: post_number, shipping_area_id: shipping_area_id, municipality: municipality, address: address, building_name: building_name, telephone_number: telephone_number, buy_management_id: buy_management.id)
+    buy_manegement = BuyManegement.create(item_id: item_id, user_id: user_id)
+    Address.create(post_number: post_number, shipping_area_id: shipping_area_id, municipality: municipality, address: address, building_name: building_name, telephone_number: telephone_number, buy_manegement_id: buy_manegement.id)
   end
 end
