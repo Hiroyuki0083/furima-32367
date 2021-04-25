@@ -1,13 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe Order, type: :model do
+RSpec.describe Form, type: :model do
 
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item) #テーブルに存在するデータを持ってくるのでcreate
-    @order = FactoryBot.build(:order, user_id: @user.id, item_id: @item.id)
+    @order = FactoryBot.build(:form, user_id: @user.id, item_id: @item.id)
+    sleep 0.1 # 処理が早すぎると以降のテストでサーバーエラーが出ることがある
   end
-
+  
   describe '商品購入' do
 
     context '商品購入に成功するとき' do

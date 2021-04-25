@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order do
+  factory :form do
     post_number           { '111-1111' }
     shipping_area_id      { 2 }
     municipality          { 'サンプル' }

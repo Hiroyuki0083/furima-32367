@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:form).permit(:post_number, :shipping_area_id, :municipality, :address,:building_name, :telephone_number).merge(user_id: current_user.id)
+    # item_idはrequireで指定したフォームのハッシュの外にあるので、マージに記述しなければならない
   end
 
 end

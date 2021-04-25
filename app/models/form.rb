@@ -1,9 +1,9 @@
 class Form
   include ActiveModel::Model
-  attr_accessor :token, :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id, :building_name
+  attr_accessor :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id, :building_name
 
   with_options presence: true do
-    validates :token
+    # validates :token
     validates :user_id
     validates :item_id
     validates :municipality
@@ -13,6 +13,10 @@ class Form
   with_options format: { with: /\A\d{3}[-]\d{4}\z/} do
     validates :post_number
   end
+
+  with_options numericality: { with: /\A\d{11}\z/} do
+    validates :telephone_number
+  end  
   
   # with_options numericality: { /^[0-9]+$/} do
     
@@ -22,9 +26,9 @@ class Form
     validates :shipping_area_id
   end
  
-  with_options numericality: { equal_to: 11} do
-    validates :telephone_number
-  end
+  # with_options numericality: { /\A\d{11}\z/} do
+  #   validates :telephone_number
+  # end
 
   # :token、配送先住所の項目、ユーザーid、商品のid　についてのバリデーション
 

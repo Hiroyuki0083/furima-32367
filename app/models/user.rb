@@ -32,9 +32,9 @@ class User < ApplicationRecord
     validates :password_confirmation
   end
 
-  with_options format: { with: /\A[0-9]+\z/, message: "is invalid. Input full-width characters."} do
-    validates :price
-  end
+  # with_options format: { with: /\A[0-9]+\z/, message: "is invalid. Input full-width characters."} do
+  #   validates :price
+  # end
 end
 
 # 7行目以降presence: trueは不要。（7行目で定義済み）
