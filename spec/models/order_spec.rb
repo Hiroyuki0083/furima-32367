@@ -6,6 +6,7 @@ RSpec.describe Order, type: :model do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item) #テーブルに存在するデータを持ってくるのでcreate
     @order = FactoryBot.build(:order, user_id: @user.id, item_id: @item.id)
+    sleep 0.01
   end
 
   describe '商品購入' do
@@ -22,6 +23,11 @@ RSpec.describe Order, type: :model do
     end
 
     context '商品購入に失敗するとき' do
+      it "tokenが空では登録できない" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
      it '郵便番号がないと購入できない' do
        @order.post_number = ''  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @order.valid?

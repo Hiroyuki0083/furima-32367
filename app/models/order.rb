@@ -8,6 +8,8 @@ class Order < ApplicationRecord
   with_options presence: true do
     validates :municipality
     validates :address
+    validates :price
+    validates :token #バリデーションを修正したらテストコード(orders.rb)も修正
   end
 
   with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input full-width characters." } do

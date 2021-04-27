@@ -18,11 +18,17 @@ RSpec.describe Form, type: :model do
         @order.municipality = 'サンプル'
         @order.address = 'サンプル111'
         @order.telephone_number = '11111111111'
+        @order.token = 'tok_aaaaaaaa00000000'
         expect(@order).to be_valid
       end
     end
 
     context '商品購入に失敗するとき' do
+      it "tokenが空では登録できない" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
      it '郵便番号がないと購入できない' do
        @order.post_number = ''  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @order.valid?
