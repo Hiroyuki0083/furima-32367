@@ -1,9 +1,9 @@
 class Form
   include ActiveModel::Model
-  attr_accessor :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id, :building_name
+  attr_accessor :token, :post_number, :shipping_area_id, :municipality, :address, :telephone_number, :user_id, :item_id, :building_name
 
   with_options presence: true do
-    # validates :token
+    validates :token
     validates :user_id
     validates :item_id
     validates :municipality

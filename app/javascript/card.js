@@ -18,17 +18,17 @@ const pay = () => {
       if (status == 200) {
         const token = response.id;
         console.log(token)
-      //   const renderDom = document.getElementById("charge-form");
-      //   const tokenObj = `<input value=${token} name='token' type="hidden">`;
-      //   renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token} name='token' type="hidden">`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
 
-      // document.getElementById("card-number").removeAttribute("name");
-      // document.getElementById("card-cvc").removeAttribute("name");
-      // document.getElementById("card-exp-month").removeAttribute("name");
-      // document.getElementById("card-exp-year").removeAttribute("name");
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
       // 25−28行目はサーバーサイドにカードの情報を送信させず、削除する記述
-      // document.getElementById("charge-form").submit();
+      document.getElementById("charge-form").submit();
       // ↑サーバーに送られた後はコンソールの表記がクリアされる。確認したい場合はコメントアウト
 
     });
