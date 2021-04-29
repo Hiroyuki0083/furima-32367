@@ -133,7 +133,9 @@
           <%= image_tag item.image, class: "item-img" %>
 
           <div class='sold-out'>
+          <% unless item.buy_management == nil %>
             <span>Sold Out!!</span>
+          <% end %>
           </div>
 
         </div>
