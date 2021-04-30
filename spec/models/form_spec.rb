@@ -38,9 +38,6 @@ RSpec.describe Form, type: :model do
        expect(@order.errors.full_messages).to include("Post number is invalid")
      end
      it '郵便番号に半角数字以外が含まれていると購入できない' do
-       @order.post_number = 'あああ' 
-       @order.post_number = 'aaa' 
-       @order.post_number = 'ＡＡＡ' 
        @order.post_number = '１１１' 
        @order.valid?
        expect(@order.errors.full_messages).to include("Post number is not a number")
@@ -66,14 +63,11 @@ RSpec.describe Form, type: :model do
        expect(@order.errors.full_messages).to include("Telephone number is not a number")
      end
      it '電話番号にハイフンが含まれていると購入できない' do
-       @order.telephone_number = '-' 
+       @order.telephone_number = '090-1234-5678' 
        @order.valid?
        expect(@order.errors.full_messages).to include("Telephone number is not a number")
      end
      it '電話番号に半角数字以外が含まれていると購入できない' do
-       @order.telephone_number = 'あああ' 
-       @order.telephone_number = 'aaa' 
-       @order.telephone_number = 'ＡＡＡ' 
        @order.telephone_number = '１１１' 
        @order.valid?
        expect(@order.errors.full_messages).to include("Telephone number is not a number")

@@ -15,7 +15,7 @@ class Form
     validates :post_number
   end
 
-  with_options numericality: { with: /\A\d{11}\z/} do
+  with_options numericality: { maximum: 11 } do
     validates :telephone_number
   end  
   
