@@ -19,20 +19,10 @@ class Form
     validates :telephone_number
   end  
   
-  # with_options numericality: { /^[0-9]+$/} do
-    
-  # end
-
   with_options numericality: { other_than: 1} do
     validates :shipping_area_id
   end
  
-  # with_options numericality: { /\A\d{11}\z/} do
-  #   validates :telephone_number
-  # end
-
-  # :token、配送先住所の項目、ユーザーid、商品のid　についてのバリデーション
-
   def save
     # 各テーブルにデータを保存する処理を書く
     buy_management = BuyManagement.create(item_id: item_id, user_id: user_id)
