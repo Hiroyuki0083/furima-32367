@@ -13,12 +13,10 @@ RSpec.describe Form, type: :model do
 
     context '商品購入に成功するとき' do
       it '必要な項目を適切に記入すれば購入できる。' do
-        @order.post_number = '111-1111'
-        @order.shipping_area_id = 2
-        @order.municipality = 'サンプル'
-        @order.address = 'サンプル111'
-        @order.telephone_number = '11111111111'
-        @order.token = 'tok_aaaaaaaa00000000'
+        expect(@order).to be_valid #factorybotで定義済みなのでこれ１行でOK
+      end
+      it '建物名は空欄でも購入できる。' do
+        @order.building_name = ''
         expect(@order).to be_valid
       end
     end
@@ -40,12 +38,12 @@ RSpec.describe Form, type: :model do
        expect(@order.errors.full_messages).to include("Post number is invalid")
      end
      it '郵便番号に半角数字以外が含まれていると購入できない' do
-       @order.telephone_number = 'あああ' 
-       @order.telephone_number = 'aaa' 
-       @order.telephone_number = 'ＡＡＡ' 
-       @order.telephone_number = '１１１' 
+       @order.post_number = 'あああ' 
+       @order.post_number = 'aaa' 
+       @order.post_number = 'ＡＡＡ' 
+       @order.post_number = '１１１' 
        @order.valid?
-       expect(@order.errors.full_messages).to include("Telephone number is not a number")
+       expect(@order.errors.full_messages).to include("Post number is not a number")
      end
      it '都道府県が選択されていないと購入できない' do
        @order.shipping_area_id = 1  
