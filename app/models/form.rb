@@ -8,7 +8,6 @@ class Form
     validates :item_id
     validates :municipality
     validates :address
-    validates :price
   end
 
   with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input full-width characters." } do
