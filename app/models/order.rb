@@ -3,16 +3,4 @@ class Order < ApplicationRecord
   belongs_to :user
   attr_accessor :token
 
-  validates :telephone_number, numericality: { /\A\d{11}\z/}
-
-  with_options presence: true do
-    validates :municipality
-    validates :address
-    validates :price
-    validates :token #バリデーションを修正したらテストコード(orders.rb)も修正
-  end
-
-  with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input full-width characters." } do
-    validates :post_number
-  end
 end
