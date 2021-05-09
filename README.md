@@ -63,9 +63,10 @@
 - belongs_to :shipping_area <!-- アソシエーションを組む場合は_idは不要 -->
 - belongs_to :buy_management
 
+## searchテーブル
 
 
-buymanagement.rb
+<!-- buymanagement.rb
 class BuyManegement < ApplicationRecord
   belongs_to :item
   belongs_to :user
@@ -81,4 +82,4 @@ class CreateBuyManegements < ActiveRecord::Migration[6.0]
       t.timestamps
     end
   end
-end
+end -->
