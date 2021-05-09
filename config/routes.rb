@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get 'products/index'
+  get 'products/search'
   devise_for :users
   root to: "items#index"
-  get 'products/search'
+  
   resources :items do
+    collection do
+    get 'products/search' => 'products#search'
+   end
     resources :orders, only: [:index, :create]
   end
 end
