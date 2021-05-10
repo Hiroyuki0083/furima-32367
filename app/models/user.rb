@@ -19,17 +19,17 @@ class User < ApplicationRecord
     validates :birthday   
   end
 
-  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters." } do
+  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "が無効です。全角文字で入力してください。" } do
     validates :name
     validates :lastname
   end
 
-  with_options format: { with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters." } do
+  with_options format: { with: /\A[ァ-ヶー]+\z/, message: "が無効です。全角カタカナで入力してください。" } do
     validates :name_furigana
     validates :lastname_furigana
   end
 
-  with_options format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "is invalid. Input full-width characters."} do
+  with_options format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "が無効です。半角英数字で入力してください。"} do
     validates :password
     validates :password_confirmation
   end

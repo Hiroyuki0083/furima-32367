@@ -10,7 +10,7 @@ class Form
     validates :address
   end
 
-  with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input full-width characters." } do
+  with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "が無効です。半角数字で入力してください。" } do
     validates :post_number
   end
 

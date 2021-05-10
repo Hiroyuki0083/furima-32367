@@ -30,7 +30,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーの情報がなければ登録できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category is not a number")
       end
       it 'カテゴリーで"--"を選択すると登録できない' do
         @item.category_id = 1 # itemテーブルのカラムに保存されるのは数値なので、--にあたる数値を記述
@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態についての情報がなければ登録できない' do
         @item.status_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include("Status is not a number")
       end
       it '商品の状態で"--"を選択すると登録できない' do
         @item.status_id = 1
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
       it '配送料の負担についての情報がなければ登録できない' do
         @item.shipping_charge_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping charge is not a number")
       end
       it '配送料の負担で"--"を選択すると登録できない' do
         @item.shipping_charge_id = 1
@@ -60,7 +60,7 @@ RSpec.describe Item, type: :model do
       it '発送元地域についての情報がなければ登録できない' do
         @item.shipping_area_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping area is not a number")
       end
       it '発送元地域で"--"を選択すると登録できない' do
         @item.shipping_area_id = 1
@@ -70,7 +70,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数についての情報がなければ登録できない' do
         @item.shipping_day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping day is not a number")
       end
       it '発送までの日数で"--"を選択すると登録できない' do
         @item.shipping_day_id = 1
@@ -80,17 +80,17 @@ RSpec.describe Item, type: :model do
       it '価格の表記が全角文字だと登録できない' do
         @item.price = '１１１１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include("Price が設定範囲外です。")
       end
       it '価格の表記が半角英数字混合では登録できない' do
         @item.price = '111aaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include("Price が設定範囲外です。")
       end
       it '価格の表記が半角英語では登録できない' do
         @item.price = 'aaaaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include("Price が設定範囲外です。")
       end
       it '価格が空欄では登録できない' do
         @item.price = ''
@@ -100,12 +100,12 @@ RSpec.describe Item, type: :model do
       it '価格が299円以下では登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include("Price が設定範囲外です。")
       end
       it '価格が10,000,000円以上では登録できない' do
         @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include("Price が設定範囲外です。")
       end
       it '画像をアップロードしていないと登録できない' do
         @item.image = nil

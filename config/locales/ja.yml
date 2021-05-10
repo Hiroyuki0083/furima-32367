@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        name: 名前
+        lastname: 名字
+        name_furigana: 名前の振り仮名
+        lastname_furigana: 名字の振り仮名
+        birthday: 誕生日
+
+      item:
+        name: 商品名
+        image: 出品画像
+        information: 商品の説明
+        price: 価格
+        category_id: カテゴリー
+        status_id: 商品状態
+        shipping_charge_id: 配送料の負担
+        shipping_area_id: 発送元の地域
+        shipping_day_id: 発送までの日数
+
+  activemodel:
+    attributes:
+      form:
+        token: カード情報
+        municipality: 市区町村
+        post_number: 郵便番号
+        shipping_area_id: 都道府県
+        address: 番地
+        telephone_number: 電話番号
+        # エラーメッセージはバリデーションを見直す

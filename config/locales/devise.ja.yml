@@ -141,3 +141,7 @@ ja:
       not_saved:
         one: エラーが発生したため %{resource} は保存されませんでした。
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+    format: "%{attribute}%{message}"
+  errors:
+    messages:
+      Pricies out of setting range: 正確な価格を入力してください。
