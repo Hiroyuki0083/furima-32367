@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :shipping_day_id
   end
   
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "が設定範囲外です。" }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "は300円〜9,999,999円で入力してください。" }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :shipping_charge
