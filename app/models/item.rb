@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options numericality: { other_than: 1} do
+  with_options numericality: { other_than: 1, message: "を選択してください。"} do
     validates :category_id #only_integerだと数値ならどれでもよい、になる
     validates :status_id
     validates :shipping_charge_id
