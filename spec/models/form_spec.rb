@@ -30,17 +30,17 @@ RSpec.describe Form, type: :model do
      it '郵便番号がないと購入できない' do
        @order.post_number = ''  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @order.valid?
-       expect(@order.errors.full_messages).to include("Post number is invalid. Input full-width characters.")
+       expect(@order.errors.full_messages).to include("Post number が無効です。半角数字で入力してください。")
      end
      it '郵便番号にハイフンがないと購入できない' do
        @order.post_number = '1111111'  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @order.valid?
-       expect(@order.errors.full_messages).to include("Post number is invalid. Input full-width characters.")
+       expect(@order.errors.full_messages).to include("Post number が無効です。半角数字で入力してください。")
      end
      it '郵便番号に半角数字以外が含まれていると購入できない' do
        @order.post_number = '１１１' 
        @order.valid?
-       expect(@order.errors.full_messages).to include("Post number is invalid. Input full-width characters.")
+       expect(@order.errors.full_messages).to include("Post number が無効です。半角数字で入力してください。")
      end
      it '都道府県が選択されていないと購入できない' do
        @order.shipping_area_id = 1  
