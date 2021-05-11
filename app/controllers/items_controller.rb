@@ -2,9 +2,13 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
   before_action :set_item, only: [:show, :edit, :update, :move_to_index, :destroy]
   before_action :move_to_index, only: [:destroy, :update, :edit]
+  before_action :search_product, only: [:index, :search]
 
   def index
     @items = Item.all.order("created_at DESC")
+    @items = Item.all  # 全商品の情報を取得
+    @p = Item.ransack(params[:q])
+    set_product_column       # privateメソッド内で定義
   end
 
   def new
@@ -40,6 +44,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.search(params[:keyword])
+  end
+
   private
 
   def set_item
@@ -54,6 +62,14 @@ class ItemsController < ApplicationController
     if @item.user_id != current_user.id || @item.buy_management != nil
       redirect_to root_path
     end
+  end
+
+  def search_product
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  end
+
+  def set_product_column
+    @item_name = Item.select("name").distinct  # 重複なくnameカラムのデータを取り出す
   end
   
 end 
