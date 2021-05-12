@@ -45,7 +45,11 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])
+    if params[:q][:name_eq].present? #値がある場合は真
+     @items = @p.result
+    else
+     redirect_to root_path
+    end
   end
 
   private
