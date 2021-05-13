@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_081108) do
+ActiveRecord::Schema.define(version: 2021_05_13_123409) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -70,17 +70,6 @@ ActiveRecord::Schema.define(version: 2021_05_09_081108) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "size", null: false
-    t.string "status", null: false
-    t.integer "price", null: false
-    t.bigint "search_category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["search_category_id"], name: "index_products_on_search_category_id"
-  end
-
   create_table "search_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -110,5 +99,4 @@ ActiveRecord::Schema.define(version: 2021_05_09_081108) do
   add_foreign_key "buy_managements", "items"
   add_foreign_key "buy_managements", "users"
   add_foreign_key "items", "users"
-  add_foreign_key "products", "search_categories"
 end
