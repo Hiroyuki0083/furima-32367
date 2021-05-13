@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
+  before_action :authenticate_user!, except: [:index, :show, :search] # ここでShowを書かないとトップページから詳細ページに行くとログインを求められる。
   before_action :set_item, only: [:show, :edit, :update, :move_to_index, :destroy]
   before_action :move_to_index, only: [:destroy, :update, :edit]
   before_action :search_product, only: [:index, :search]
@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @p = Item.ransack(params[:q])
   end
 
   def destroy
@@ -45,7 +46,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    if params[:q][:name_eq].present? #値がある場合は真
+    if params[:q][:name_cont].present? #値がある場合は真
      @items = @p.result
     else
      redirect_to root_path

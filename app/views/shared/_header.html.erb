@@ -6,7 +6,7 @@
     <%= search_form_for @p, url: items_search_path, class: "search-form" do |f| %>
 
       <%# <input class='input-box' placeholder='キーワードから探す'> %>
-      <%= f.text_field :name_eq, class: 'input-box', placeholder: 'キーワードから探す'%>
+      <%= f.text_field :name_cont, class: 'input-box', placeholder: 'キーワードから探す'%>
 
       <%# <button> %>
       <%= f.button class: "search-button" do %>
