@@ -30,22 +30,22 @@ RSpec.describe Form, type: :model do
      it '郵便番号がないと購入できない' do
        @order.post_number = ''  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @order.valid?
-       expect(@order.errors.full_messages).to include("Post number is invalid. Input full-width characters.")
+       expect(@order.errors.full_messages).to include("Post number は半角数字で入力してください。")
      end
      it '郵便番号にハイフンがないと購入できない' do
        @order.post_number = '1111111'  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @order.valid?
-       expect(@order.errors.full_messages).to include("Post number is invalid. Input full-width characters.")
+       expect(@order.errors.full_messages).to include("Post number は半角数字で入力してください。")
      end
      it '郵便番号に半角数字以外が含まれていると購入できない' do
        @order.post_number = '１１１' 
        @order.valid?
-       expect(@order.errors.full_messages).to include("Post number is invalid. Input full-width characters.")
+       expect(@order.errors.full_messages).to include("Post number は半角数字で入力してください。")
      end
      it '都道府県が選択されていないと購入できない' do
        @order.shipping_area_id = 1  
        @order.valid?
-       expect(@order.errors.full_messages).to include("Shipping area must be other than 1")
+       expect(@order.errors.full_messages).to include("Shipping area を選択してください。")
      end
      it '市区町村が記入されていないと購入できない' do
        @order.municipality = '' 
@@ -60,17 +60,17 @@ RSpec.describe Form, type: :model do
      it '電話番号が記入されていないと購入できない' do
        @order.telephone_number = '' 
        @order.valid?
-       expect(@order.errors.full_messages).to include("Telephone number is not a number")
+       expect(@order.errors.full_messages).to include("Telephone number は半角数字で入力してください。")
      end
      it '電話番号にハイフンが含まれていると購入できない' do
        @order.telephone_number = '090-1234-5678' 
        @order.valid?
-       expect(@order.errors.full_messages).to include("Telephone number is not a number")
+       expect(@order.errors.full_messages).to include("Telephone number は半角数字で入力してください。")
      end
      it '電話番号に半角数字以外が含まれていると購入できない' do
        @order.telephone_number = '１１１' 
        @order.valid?
-       expect(@order.errors.full_messages).to include("Telephone number is not a number")
+       expect(@order.errors.full_messages).to include("Telephone number は半角数字で入力してください。")
      end
      it 'user_idが空では登録できない' do
        @order.user_id = '' 

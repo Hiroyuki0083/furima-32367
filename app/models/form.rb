@@ -10,15 +10,15 @@ class Form
     validates :address
   end
 
-  with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input full-width characters." } do
+  with_options format: { with: /\A\d{3}[-]\d{4}\z/, message: "は半角数字で入力してください。" } do
     validates :post_number
   end
 
-  with_options numericality: { maximum: 11 } do
+  with_options numericality: { maximum: 11, message: "は半角数字で入力してください。" } do
     validates :telephone_number
   end  
   
-  with_options numericality: { other_than: 1} do
+  with_options numericality: { other_than: 1, message: "を選択してください。" } do
     validates :shipping_area_id
   end
  

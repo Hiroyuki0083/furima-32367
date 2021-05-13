@@ -14,15 +14,15 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = '111aaa'
         expect(@user).to be_valid
       end
-      it 'passwordは6文字以上で登録できる。' do
-        @user.password = '000000'
-        @user.password_confirmation = '000000'
+      it 'パスワードは6文字以上で登録できる。' do
+        @user.password = '000aaa'
+        @user.password_confirmation = '000aaa'
         expect(@user).to be_valid
       end
     end
 
     context '新規登録に失敗するとき' do
-     it 'nicknameが空だと登録できない' do
+     it 'ニックネームが空だと登録できない' do
        @user.nickname = ''  # user = FactoryBot.build(:user) は５行目で@userを定義している為不要。使わない場合userには@をつける。
        @user.valid?
        expect(@user.errors.full_messages).to include("Nickname can't be blank")
@@ -84,37 +84,37 @@ RSpec.describe User, type: :model do
      it 'ユーザー本名は、名字が必須であること' do
       @user.lastname = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname can't be blank", "Lastname is invalid. Input full-width characters.")
+      expect(@user.errors.full_messages).to include("Lastname が無効です。全角文字で入力してください。")
      end
      it 'ユーザーの名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
        @user.name = 'aaa111'
        @user.valid?
-       expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+       expect(@user.errors.full_messages).to include("Name が無効です。全角文字で入力してください。")
      end
      it 'ユーザーの名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
       @user.lastname = 'aaa111'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname is invalid. Input full-width characters.")
+      expect(@user.errors.full_messages).to include("Lastname が無効です。全角文字で入力してください。")
     end
      it 'ユーザーの名前の振り仮名が必須であること' do
        @user.name_furigana = ''
        @user.valid?
-       expect(@user.errors.full_messages).to include("Name furigana can't be blank", "Name furigana is invalid. Input full-width katakana characters.")
+       expect(@user.errors.full_messages).to include("Name furigana が無効です。全角カタカナで入力してください。")
      end
      it 'ユーザー名字の振り仮名が必須であること' do
       @user.lastname_furigana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname furigana can't be blank", "Lastname furigana is invalid. Input full-width katakana characters.")
+      expect(@user.errors.full_messages).to include("Lastname furigana が無効です。全角カタカナで入力してください。")
     end
      it 'ユーザーの名前のフリガナは、全角（カタカナ）での入力が必須であること' do
        @user.name = 'aaa111'
        @user.valid?
-       expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.")
+       expect(@user.errors.full_messages).to include("Name が無効です。全角文字で入力してください。")
      end
      it 'ユーザーの名字のフリガナは、全角（カタカナ）での入力が必須であること' do
       @user.lastname = 'aaa111'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname is invalid. Input full-width characters.")
+      expect(@user.errors.full_messages).to include("Lastname が無効です。全角文字で入力してください。")
      end
      it '生年月日が必須であること' do
        @user.birthday = ''
