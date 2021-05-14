@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: :create
-  
+  # resources :tweets do
+  #   resources :comments, only: :create
+  # end ネストの記述要見直し
 end
