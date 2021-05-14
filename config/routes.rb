@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create]
   end
 
-  resources :comments, only: :create
+  root 'comment#new'
+  resources :comments, only: [:create]
   # resources :tweets do
   #   resources :comments, only: :create
   # end ネストの記述要見直し
