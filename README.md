@@ -82,4 +82,5 @@
 | text    | string     | null: false              |
 
 ### Association
-- has_many :products
+- belongs_to :comment
+- belongs_to :user

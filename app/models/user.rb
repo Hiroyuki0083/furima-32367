@@ -1,15 +1,12 @@
 class User < ApplicationRecord
   has_many :items
   has_many :buy_managements
+  has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  # has_many :items
-  # has_many :buy_managements
-  # 購入記録に関するテーブルのアソシエーション(実装時にコメントアウト解除予定)
-
   with_options presence: true do
     validates :name
     validates :lastname
