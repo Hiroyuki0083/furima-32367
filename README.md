@@ -63,23 +63,23 @@
 - belongs_to :shipping_area <!-- アソシエーションを組む場合は_idは不要 -->
 - belongs_to :buy_management
 
-## searchテーブル
+## search_categoriesテーブル
+
+| Column          | Type       | Options           |
+| --------------- | ---------- | ------------------|
+| name            | string     | null: false       |
+
+### Association
+- has_many :products
 
 
-<!-- buymanagement.rb
-class BuyManegement < ApplicationRecord
-  belongs_to :item
-  belongs_to :user
-  has_one :address
-end
+## commentsテーブル
 
-migration
-class CreateBuyManegements < ActiveRecord::Migration[6.0]
-  def change
-    create_table :buy_manegements do |t|
-      t.references :item, foreign_key: true
-      t.references :user, foreign_key: true
-      t.timestamps
-    end
-  end
-end -->
+| Column  | Type       | Options                  |
+| ------- | ---------- | -------------------------|
+| user    | string     | null: false ,unique: true|
+| comment | string     | null: false              |
+| text    | string     | null: false              |
+
+### Association
+- has_many :products
