@@ -10,10 +10,9 @@ Rails.application.routes.draw do
    end
     resources :orders, only: [:index, :create]
   end
-
-  root 'comment#new'
-  resources :comments, only: [:create]
-  # resources :tweets do
-  #   resources :comments, only: :create
-  # end ネストの記述要見直し
+  
+  
+  resources :items do
+    resources :comments, only: [:create]
+  end
 end

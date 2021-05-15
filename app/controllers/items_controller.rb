@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(items_params)
+    @comment = Comment.new
     # モデル名を指定しているので複数形にはしない
     if @item.save
       redirect_to root_path
@@ -27,6 +28,8 @@ class ItemsController < ApplicationController
 
   def show
     @p = Item.ransack(params[:q])
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def destroy
