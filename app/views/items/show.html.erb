@@ -102,19 +102,22 @@
      <%# <textarea class="comment-text"></textarea>
 
      <%= form.text_area :name, class: "hoge", size: "30x10" %> 
-
-
-      <%= f.text_area :text , class: "comment-text" %>
+      <div class="field">
+        <%= f.text_area :text , class: "comment-text" %>
+      </div>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
        <%# <button type="submit" class="comment-btn"> %>
-      <div class="comment-btn">
-      <%= f.submit "コメントする" %>
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25" %>
-        </div>
+       <%= f.button type: "submit", class: "comment-btn" do  %> 
+        <%# <div class="comment-btn"> %>
+          <%# <%= f.submit "コメントする" %> 
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25" %> 
+          <span>コメントする<span>
+        <%# </div> %>
+        <% end %>
       <% end %>
   </div>
   <div class="links">
