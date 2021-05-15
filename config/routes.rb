@@ -10,4 +10,9 @@ Rails.application.routes.draw do
    end
     resources :orders, only: [:index, :create]
   end
+  
+  
+  resources :items do
+    resources :comments, only: [:create]
+  end
 end

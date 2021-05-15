@@ -1,5 +1,5 @@
 class SearchCategory < ApplicationRecord
-  has_many :products
+  has_many :items
   # validates :text, presence: true
 
   # def self.search(search)
