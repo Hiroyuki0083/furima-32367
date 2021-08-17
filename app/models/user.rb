@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :comments
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :timeoutable
   
   with_options presence: true do
     validates :name
