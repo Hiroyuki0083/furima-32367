@@ -2,8 +2,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :buy_managements
   has_many :comments
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
@@ -31,9 +30,6 @@ class User < ApplicationRecord
     validates :password_confirmation
   end
 
-  # with_options format: { with: /\A[0-9]+\z/, message: "is invalid. Input full-width characters."} do
-  #   validates :price
-  # end
 end
 
-# 7行目以降presence: trueは不要。（7行目で定義済み）
+# 6行目以降presence: trueは不要。（7行目で定義済み）
