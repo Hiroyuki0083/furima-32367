@@ -32,4 +32,4 @@ class User < ApplicationRecord
 
 end
 
-# 6行目以降presence: trueは不要。（7行目で定義済み）
+# 6行目以降presence: trueは不要。（9行目で定義済み）
